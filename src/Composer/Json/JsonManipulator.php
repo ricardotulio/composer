@@ -312,6 +312,21 @@ class JsonManipulator
             list($name, $subName) = explode('.', $name, 2);
         }
 
+        if (($mainNode == 'require'
+            || $mainNode == 'require-dev')
+            && preg_match('/\/\*$/', $name)) {
+
+            $packagesFromVendor = array_filter(array_keys($decoded[$mainNode]), function($package) use ($name) {
+                $regex = '/^' . str_replace('/*', '\/.+', $name) . '$/';
+
+                return preg_match($regex, $package) > 0;
+            });
+
+            foreach($packagesFromVendor as $packageFromVendor) {
+                $this->removeSubNode($mainNode, $packageFromVendor);
+            }
+        }
+
         // no node to remove
         if (!isset($decoded[$mainNode][$name]) || ($subName && !isset($decoded[$mainNode][$name][$subName]))) {
             return true;

@@ -216,10 +216,12 @@ class JsonConfigSourceTest extends TestCase
             $this->removeLinkDataArguments('require', 'my-vend/my-lib', 'require-to-empty'),
             $this->removeLinkDataArguments('require', 'my-vend/my-lib', 'require-to-oneOfEverything', $oneOfEverything),
             $this->removeLinkDataArguments('require', 'my-vend/my-lib', 'require-to-twoOfEverything', $twoOfEverything),
+            $this->removeLinkDataArguments('require', 'my-vend/*', 'require-to-empty', $twoOfEverything),
 
             $this->removeLinkDataArguments('require-dev', 'my-vend/my-lib-tests', 'require-dev-to-empty'),
             $this->removeLinkDataArguments('require-dev', 'my-vend/my-lib-tests', 'require-dev-to-oneOfEverything', $oneOfEverything),
             $this->removeLinkDataArguments('require-dev', 'my-vend/my-lib-tests', 'require-dev-to-twoOfEverything', $twoOfEverything),
+            $this->removeLinkDataArguments('require-dev', 'my-vend/*', 'require-to-empty', $twoOfEverything),
 
             $this->removeLinkDataArguments('provide', 'my-vend/my-lib-interface', 'provide-to-empty'),
             $this->removeLinkDataArguments('provide', 'my-vend/my-lib-interface', 'provide-to-oneOfEverything', $oneOfEverything),
